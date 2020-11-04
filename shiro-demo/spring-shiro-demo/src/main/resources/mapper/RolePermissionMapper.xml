@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wsl.dao.RolePermissionMapper">
+    <resultMap id="BaseResultMap" type="com.wsl.bean.RolePermission">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="roleId" jdbcType="INTEGER" property="roleId"/>
+        <result column="permissionsId" jdbcType="INTEGER" property="permissionId"/>
+        <association property="permission" javaType="com.wsl.bean.Permission">
+            <result column="permissionsId" jdbcType="INTEGER" property="id" />
+            <result column="permission" jdbcType="INTEGER" property="permission" />
+        </association>
+<!--        <collection property="permissionsList" ofType="com.wsl.bean.Permission">-->
+<!--            <result column="permissionsId" jdbcType="INTEGER" property="id" />-->
+<!--        </collection>-->
+    </resultMap>
+    <select id="getRolePermissionsListByRoleId" resultMap="BaseResultMap">
+        SELECT
+            rolePermission.id,
+            rolePermission.roleId,
+            rolePermission.permissionId,
+            permission.permission
+        FROM
+            rolePermission
+        INNER JOIN
+            permission
+        ON
+            permission.id=rolePermission.permissionId
+        WHERE
+            rolePermission.roleId  = #{roleId};
+    </select>
+</mapper>

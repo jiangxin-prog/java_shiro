@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="Thymeleaf" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8" />
+    <title>LOGIN</title>
+</head>
+<body>
+<h3>login</h3>
+<form action="#" th:action="@{/login}"th:object="${user}" method="get"  enctype="multipart/form-data">
+
+    姓名：<input type="text" name="userName" value="zhangsan" /><br>
+    密码：<input type="text" name="password" value="123456" />
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>
